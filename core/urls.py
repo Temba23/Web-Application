@@ -20,7 +20,6 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
-from blog.views import ProfileDetailView
 from users.views import forgot_password
 
 
