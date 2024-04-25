@@ -8,6 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Profile
+import requests
 
 def register(request):
     if request.method == 'POST':
@@ -77,3 +78,14 @@ def forgot_password(request):
     else:
         form = PasswordChangeForm(request.user)
         return render(request, "user/change_password.html", {"form": form})
+    
+
+def location(request):
+    response = requests.get('http://edns.ip-api.com/json')
+    print(response)
+    data = response.json()
+    print(data)
+    context = {
+        "dns" : data['dns']
+    }
+    return render(request, "user/location.html", context=context)
